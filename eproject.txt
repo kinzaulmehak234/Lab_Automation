@@ -1,0 +1,122 @@
+Product Type (Switch Gear, Capacitor, Resistor, etc.)
+Date of Manufacture: The date when the product was completed and ready for testing or sale.
+
+
+Product ID (10-digit)
+Product Name
+Product Type (Switch Gear, Capacitor, Resistor, etc.)
+Date of Manufacture (testing date)
+Product Category (e.g., Power Components, Control Devices)
+Product Description
+
+
+ Product ID (pre-filled or selected)
+ Test Type (dropdown or input)
+ Test Criteria (input field)
+ Test Result (Pass/Fail dropdown or radio button)
+ Remarks (optional)
+  Start Date 
+  End Date
+ Submit Button to save the test.
+
+
+Additional Suggestions:
+To ensure further alignment:
+
+Add Test Status: Since the SRS emphasizes checking the status of testing (whether a product is pending, in progress, or completed), you could add a Test Status field to reflect the test's current state.
+Tester Information: You may also want to capture the name(s) of the tester(s), as specified in the SRS, to maintain a record of who performed the test.
+<option value="">-- Select Test Type --</option>
+        <option value="Safety Test">Safety Test</option>
+        <option value="Performance Test">Performance Test</option>
+        <option value="Quality Test">Quality Test</option>
+        <option value="Durability Test">Durability Test</option>
+        <option value="Functionality Test">Functionality Test</option>
+
+2. Tests Table
+This table stores all the details about the tests conducted on each product.
+
+Column Name	Data Type	Description
+id	Integer (Primary Key, Auto Increment)	Unique identifier for each test.
+product_id	Integer (Foreign Key, References Products.id)	Links the test to a specific product.
+test_type	String	Describes the type of test conducted (e.g., safety test, performance test, etc.).
+test_criteria	String	The specific criteria or condition used for testing (e.g., voltage level, temperature, etc.).
+test_result	String (pass/fail)	The result of the test (pass or fail).
+remarks	Text	Optional field for capturing detailed comments or observations about the test.
+created_at	Timestamp	The date and time when the test was created.
+updated_at	Timestamp	The date and time when the test record was last updated.
+
+
+
+
+testing k lei kitne product gai h (Total Testing product)
+kitne product test me successfull howe (Testing (Pass,Fail))
+    
+   
+
+
+
+
+
+Memory updated
+Here is a detailed description of the admin dashboard table columns and functionality for your SRS Electrical Appliances project, covering both the product and testing data:
+
+Admin Dashboard Table Columns
+1. Product Table
+Product ID (10-digit): A unique identifier for each product, generated based on product code, revision, and manufacturing number.
+Product Name: The name of the product (e.g., Switch Gear, Capacitor).
+Product Type: A categorical field that defines the type of product (e.g., Switch Gear, Capacitor, Resistor).
+Date of Manufacture: The date the product was manufactured.
+Product Category: Classifies the product (e.g., Power Components, Control Devices).
+Product Description: A detailed description of the product, including its key features or functions.
+2. Test Table
+Product ID: A reference to the Product ID from the Product Table.
+Test Type: A dropdown or input field to select the type of testing performed (e.g., Electrical Test, Durability Test).
+Test Criteria: Input field to describe the criteria for testing (e.g., voltage rating, resistance).
+Test Result: A Pass/Fail dropdown or radio button to capture the test outcome.
+Remarks: An optional field to enter remarks or observations during the test.
+Start Date: The date the test was initiated.
+End Date: The date the test was completed.
+Functionalities for Each Field
+Product Table
+Product ID: This will either be pre-filled (auto-generated) when a product is created, or selected when associating a product with a test.
+Product Name: Manually entered when adding a new product. This field is displayed in the product list and helps identify products by name.
+Product Type: This dropdown allows selection from predefined categories (Switch Gear, Capacitor, Resistor, etc.). This helps organize products by their type.
+Date of Manufacture: Manually entered during product creation. Used to track the age of products and for reporting.
+Product Category: Another categorical field that groups products based on function or market segment (Power Components, Control Devices).
+Product Description: Used for detailed descriptions, this helps explain the purpose, features, or specifications of a product.
+Test Table
+Product ID: This is a foreign key linking the test to a specific product. It helps retrieve testing records for a product.
+Test Type: The admin will select from a list of predefined test types. This field determines what kind of test the product is undergoing.
+Test Criteria: This field records the specific conditions under which the product was tested (e.g., load capacity, voltage tolerance).
+Test Result: The outcome of the test, either Pass or Fail, which can be recorded using a simple dropdown or radio button.
+Remarks: Optional field for testers to input additional information or issues encountered during testing.
+Start Date: The date when the testing started. It helps track the time spent in the testing phase.
+End Date: The date when the testing was completed, used for calculating testing duration and for reporting purposes.
+Database Structure for the Admin Dashboard
+Products Table
+Column Name	Data Type	Description
+id	INT	Primary key, auto-increment.
+product_id	VARCHAR(10)	Unique identifier for the product.
+product_name	VARCHAR(255)	Name of the product.
+product_type	ENUM('Switch Gear', 'Capacitor', 'Resistor', ...)	The type of product.
+date_of_manufacture	DATE	The date when the product was manufactured.
+product_category	VARCHAR(255)	Product classification.
+product_description	TEXT	Detailed description of the product.
+created_at	TIMESTAMP	Auto-generated when the product is created.
+updated_at	TIMESTAMP	Auto-updated when the product is modified.
+Tests Table
+Column Name	Data Type	Description
+id	INT	Primary key, auto-increment.
+test_id	VARCHAR(12)	Unique identifier for the test.
+product_id	VARCHAR(10)	Foreign key referencing the product_id.
+test_type	ENUM('Electrical Test', 'Durability Test', ...)	Type of test conducted.
+test_criteria	TEXT	Description of the test criteria.
+test_result	ENUM('Pass', 'Fail')	Result of the test.
+remarks	TEXT	Optional remarks about the test.
+start_date	DATE	Date the test started.
+end_date	DATE	Date the test ended.
+created_at	TIMESTAMP	Auto-generated when the test is recorded.
+updated_at	TIMESTAMP	Auto-updated when the test is modified.
+Conclusion
+With this database structure and column functionalities, the admin dashboard will be able to track products through their manufacturing and testing lifecycle.
+ By capturing essential details like product type, test criteria, and results, you can effectively manage testing records, generate unique IDs, and provide a clear overview of product status.
